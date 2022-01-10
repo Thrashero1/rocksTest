@@ -1,0 +1,22 @@
+{
+  "name": "rockstest",
+  "version": "1.0.0",
+  "description": "Technical test for KaFe Rocks",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Thrashero1/rocksTest.git"
+  },
+  "author": "David Borg",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Thrashero1/rocksTest/issues"
+  },
+  "homepage": "https://github.com/Thrashero1/rocksTest#readme",
+  "dependencies": {
+    "cypress": "^9.2.0"
+  }
+}

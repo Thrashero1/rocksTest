@@ -4,7 +4,10 @@
   "description": "Technical test for KaFe Rocks",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "cy:open": "npx cypress open",
+    "cy:report": "yarn merge_reports && yarn mochawesome_report",
+    "merge_reports": "mochawesome-merge ./cypress/reports/*.json > ./cypress/reports/outreports/mochawesome.json",
+    "mochawesome_report": "marge -t Cypress_Test_Report -f Cypress_HMTL_Report ./cypress/reports/outreports/mochawesome.json"
   },
   "repository": {
     "type": "git",
@@ -17,6 +20,9 @@
   },
   "homepage": "https://github.com/Thrashero1/rocksTest#readme",
   "dependencies": {
-    "cypress": "^9.2.0"
+    "cypress": "^9.2.0",
+    "mochawesome": "^7.0.1",
+    "mochawesome-merge": "^4.2.1",
+    "mochawesome-report-generator": "^6.0.1"
   }
 }

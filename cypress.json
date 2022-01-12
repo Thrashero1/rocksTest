@@ -1,1 +1,19 @@
-{}
+{
+  "video": false,
+  "defaultCommandTimeout": 10000,
+  "viewportWidth": 1440,
+  "viewportHeight": 900,
+  "chromeWebSecurity": false,
+  "reporter": "mochawesome",
+  "screenshotsFolder": "mochawesome-report/assets",
+  "retries":{
+    "runMode": 1,
+    "openMode": 0
+  },
+  "reporterOptions": {
+      "reportDir": "cypress/reports",
+      "overwrite": false,
+      "html": false,
+      "json": true
+   }
+}

@@ -1,0 +1,6 @@
+node_modules
+cypress/reports/*.json
+cypress/reports/outreports/*.json
+mochawesome-report/assets/*.js/*.png
+cypress/videos/*.mp4
+mochawesome-report/Cypress_HTML_report.html

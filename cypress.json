@@ -1,4 +1,5 @@
 {
+  "baseUrl": "https://apuestasonline.net/",
   "video": false,
   "defaultCommandTimeout": 10000,
   "viewportWidth": 1440,

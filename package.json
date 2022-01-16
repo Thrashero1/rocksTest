@@ -4,10 +4,13 @@
   "description": "Technical test for KaFe Rocks",
   "main": "index.js",
   "scripts": {
+    "cy:test": "npx cypress run -b chrome --spec './cypress/integration/tests/*.js'",
     "cy:open": "npx cypress open",
+    "email": "npx cypress run -b chrome --spec './cypress/integration/send_email.js'",
     "cy:report": "yarn merge_reports && yarn mochawesome_report",
     "merge_reports": "mochawesome-merge ./cypress/reports/*.json > ./cypress/reports/outreports/mochawesome.json",
-    "mochawesome_report": "marge -t Cypress_Test_Report -f Cypress_HMTL_Report ./cypress/reports/outreports/mochawesome.json"
+    "mochawesome_report": "marge -t Cypress_Test_Report -f Cypress_HMTL_Report ./cypress/reports/outreports/mochawesome.json",
+    "clean": "rm -rf ./cypress/reports/*.json"
   },
   "repository": {
     "type": "git",
@@ -23,6 +26,7 @@
     "cypress": "^9.2.0",
     "mochawesome": "^7.0.1",
     "mochawesome-merge": "^4.2.1",
-    "mochawesome-report-generator": "^6.0.1"
+    "mochawesome-report-generator": "^6.0.1",
+    "nodemailer": "^6.7.2"
   }
 }

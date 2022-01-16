@@ -1,13 +1,16 @@
 /// <reference types="Cypress" />
 
-// const cypress = require("cypress")
-
 describe('Verfies tags and elements across site', () => {   
-const url = 'https://apuestasonline.net/'
+
 const title = 'Mejores apuestas online 2022 → Ranking España y Latam'
 
+    // This loads the site before each run of tests as if one fails it could create an issue for the following tests and this way makes sure each one is independance of the previous. Also the site is defined within the cypress.json config file
+    beforeEach(() => {
+        cy.visit('/')
+    })
+
+    // This test basically makes sure that the title and meta description are present and show the right data
     it('Loads up site and verifies title and language presence', () => {
-        cy.visit(url)
         cy.get('head').should('have.length', '1');
         cy.get('head title').should('contain', title)
         cy.get('head [name="description"]').should('have.length', '1').and('have.attr', 'content')
@@ -15,11 +18,13 @@ const title = 'Mejores apuestas online 2022 → Ranking España y Latam'
 
     })
 
+    // This test makes sure one title is and meta description are present within the head section
     it('Verfies a single heading havibg a title and meta description', () => {
         cy.get('head title').should('not.have.length.above', 1)
         cy.get('head [name="description"]').should('not.have.length.above', 1)
     })
 
+    // This test makes sure that only one H1 tag is present on the site while there are 2 or more H2 subheadings
     it('Verfies the number of H1 and H2 tags', () => {
         cy.get('h1').should('have.length', '1')
         cy.get('h2').then(h2 => {
@@ -29,6 +34,7 @@ const title = 'Mejores apuestas online 2022 → Ranking España y Latam'
         })
     })
 
+    // This tests cycles through all images present on the site and verifies the presence of an alt taG
     it('Check all images have alt tags', () => {
         cy.get('img').each($img => {
             expect($img).to.have.attr('alt')
@@ -36,6 +42,7 @@ const title = 'Mejores apuestas online 2022 → Ranking España y Latam'
         
     })
 
+    // This test makes sure the canonical ios present and correctly set up
     it('Verifies the canonical', () => {
         cy.get('head [rel="canonical"]').should('have.attr', 'href', 'https://apuestasonline.net/')
     })
@@ -43,14 +50,12 @@ const title = 'Mejores apuestas online 2022 → Ranking España y Latam'
 
 describe('Verify all linked sites', () => {
 
+    beforeEach(() => {
+        cy.visit('/')
+    })
+
+    // This test grabs all the affailiate links and sends a request to each one.  For each request the status code is checked and if the check returns a 404 it prints the name of the site within the report. I have also added a check for 403 as all sites were fine but a couple returned a 403 and this would give an exampleof how the report would look with a site indicated as having a 4** error
     it('Verifies there are no 404 sites', () => {
-        cy.get('[title="Visitar"]').each($link => {
-            const test = $link.attr('href')
-            cy.request({url: test, failOnStatusCode: false}).then((resp => {
-                if(resp.status === 403) {
-                    cy.addContext(`This URL has an issue: ${test}`)
-                }
-            }))
-        })
+        cy.testLinks('[title="Visitar"]')
     })
 })
